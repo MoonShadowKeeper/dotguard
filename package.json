@@ -1,0 +1,20 @@
+{
+  "name": "dotguard",
+  "version": "1.0.0",
+  "description": "Universal .env file validator — validate, lint, and enforce environment variable schemas",
+  "main": "src/index.js",
+  "bin": {
+    "dotguard": "./bin/dotguard.js"
+  },
+  "scripts": {
+    "test": "node test/run.js",
+    "lint": "node bin/dotguard.js validate"
+  },
+  "keywords": ["env", "dotenv", "validator", "lint", "environment", "variables", "schema", "ci", "cli"],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "files": ["bin/", "src/", "README.md", "LICENSE"]
+}
