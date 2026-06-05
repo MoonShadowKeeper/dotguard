@@ -3,9 +3,9 @@
   <p><strong>Universal .env file validator — validate, lint, and enforce environment variable schemas</strong></p>
 
   <p>
-    <img alt="npm version" src="https://img.shields.io/npm/v/dotguard?color=blue&style=flat-square" />
-    <img alt="license" src="https://img.shields.io/npm/l/dotguard?style=flat-square" />
-    <img alt="node" src="https://img.shields.io/node/v/dotguard?style=flat-square" />
+    <img alt="npm version" src="https://img.shields.io/npm/v/@moonshadows/dotguard?color=blue&style=flat-square" />
+    <img alt="license" src="https://img.shields.io/npm/l/@moonshadows/dotguard?style=flat-square" />
+    <img alt="node" src="https://img.shields.io/node/v/@moonshadows/dotguard?style=flat-square" />
     <img alt="CI" src="https://img.shields.io/github/actions/workflow/status/MoonShadowKeeper/dotguard/validate-env.yml?style=flat-square&label=CI" />
   </p>
 
