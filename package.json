@@ -1,5 +1,5 @@
 {
-  "name": "dotguard",
+  "name": "@moonshadows/dotguard",
   "version": "1.0.0",
   "description": "Universal .env file validator — validate, lint, and enforce environment variable schemas",
   "main": "src/index.js",

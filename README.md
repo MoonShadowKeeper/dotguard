@@ -67,19 +67,19 @@ $ dotguard validate
 ### Global install
 
 ```bash
-npm install -g dotguard
+npm install -g @moonshadows/dotguard
 ```
 
 ### Project-local (recommended)
 
 ```bash
-npm install --save-dev dotguard
+npm install --save-dev @moonshadows/dotguard
 ```
 
 ### One-off usage
 
 ```bash
-npx dotguard validate
+npx @moonshadows/dotguard validate
 ```
 
 ### Requirements
