@@ -41,23 +41,23 @@ Environment variables are the **backbone of modern application configuration**, 
 ```
 $ dotguard validate
 
-  🛡️  dotguard v1.0.0
+  dotguard v1.0.0
 
   Validating .env against .env.example...
 
-  ✖ JWT_SECRET — failed min length check (expected ≥ 32, got 5)
-  ⚠ EXTRA_VAR — variable not defined in schema (orphan)
-  ✔ APP_NAME — valid
-  ✔ NODE_ENV — valid
-  ✔ PORT — valid
-  ✔ DATABASE_URL — valid
-  ✔ REDIS_URL — valid
-  ✔ DEBUG — valid
-  ✔ API_VERSION — valid
+  JWT_SECRET — failed min length check (expected ≥ 32, got 5)
+  EXTRA_VAR — variable not defined in schema (orphan)
+  APP_NAME — valid
+  NODE_ENV — valid
+  PORT — valid
+  DATABASE_URL — valid
+  REDIS_URL — valid
+  DEBUG — valid
+  API_VERSION — valid
 
   Results: 7 passed · 1 failed · 1 warning
 
-  ✖ Validation failed
+  Validation failed
 ```
 
 ---
@@ -599,7 +599,7 @@ Create a `.dotguardrc.json` in your project root to customize behavior:
 
 How does dotguard stack up against alternatives?
 
-| Feature | 🛡️ dotguard | dotenv-safe | env-cmd | envalid |
+| Feature | dotguard | dotenv-safe | env-cmd | envalid |
 |---------|:-----------:|:-----------:|:-------:|:-------:|
 | Schema in `.env.example` | ✅ | ✅ | ❌ | ❌ |
 | Type validation | ✅ | ❌ | ❌ | ✅ |
@@ -608,6 +608,7 @@ How does dotguard stack up against alternatives?
 | Enum support | ✅ | ❌ | ❌ | ✅ |
 | CLI tool | ✅ | ❌ | ✅ | ❌ |
 | CI/CD friendly | ✅ | ⚠️ | ⚠️ | ⚠️ |
+| Zero dependencies | ✅ | ❌ | ❌ | ❌ |
 | Orphan detection | ✅ | ❌ | ❌ | ❌ |
 | Diff command | ✅ | ❌ | ❌ | ❌ |
 | Sync command | ✅ | ❌ | ❌ | ❌ |

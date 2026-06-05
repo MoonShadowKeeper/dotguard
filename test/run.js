@@ -44,13 +44,13 @@ PORT=999999
 DEBUG=yes
 `);
 
-console.log('🛡️  dotguard — integration tests\n');
+console.log('dotguard — integration tests\n');
 
 try {
   // Test 1: Valid environment
   console.log('Running test: Valid environment');
   execSync(`node "${CLI_PATH}" validate --env "${mockValidPath}" --schema "${mockSchemaPath}" --ci`, { stdio: 'pipe' });
-  console.log('  ✓ Passed\n');
+  console.log('  Passed\n');
 
   // Test 2: Invalid environment
   console.log('Running test: Invalid environment');
@@ -61,10 +61,10 @@ try {
     const output = error.stdout.toString() + error.stderr.toString();
     assert.match(output, /Validation failed/);
     assert.match(output, /should be a valid port number/); // from port rule
-    console.log('  ✓ Passed\n');
+    console.log('  Passed\n');
   }
 
-  console.log('All tests passed! ✨');
+  console.log('All tests passed!');
 } finally {
   // Cleanup
   try { fs.unlinkSync(mockSchemaPath); } catch {}
