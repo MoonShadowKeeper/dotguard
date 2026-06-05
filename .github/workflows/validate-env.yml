@@ -3,16 +3,8 @@ name: Validate Environment
 on:
   push:
     branches: [main]
-    paths:
-      - '.env.example'
-      - '.dotguardrc.json'
-      - 'src/**'
   pull_request:
     branches: [main]
-    paths:
-      - '.env.example'
-      - '.dotguardrc.json'
-      - 'src/**'
 
 jobs:
   validate-env:
