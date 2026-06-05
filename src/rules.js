@@ -55,7 +55,8 @@ function isBoolean(val) {
 function isUrl(val) {
   try {
     const u = new URL(val);
-    return ['http:', 'https:', 'ftp:', 'ftps:'].includes(u.protocol);
+    // Accept any protocol with a valid URL structure (http, https, postgres, redis, mongodb, amqp, etc.)
+    return u.protocol.length > 1 && u.host.length > 0;
   } catch {
     return false;
   }
@@ -208,7 +209,9 @@ function pattern(entry, schema) {
 }
 
 /**
- * Rule: range — numeric value within min/max bounds.
+ * Rule: range — numeric value within min/max bounds, or string length check.
+ * For numeric types (number, integer, port): checks numeric value.
+ * For string types: checks string length.
  * @type {RuleFunction}
  */
 function range(entry, schema) {
@@ -216,38 +219,71 @@ function range(entry, schema) {
   if (schema.min === undefined && schema.max === undefined) return null;
   if (entry.value === '') return null;
 
-  const num = Number(entry.value);
-  if (Number.isNaN(num)) {
+  const numericTypes = ['number', 'integer', 'port'];
+  const isNumericType = schema.type && numericTypes.includes(schema.type);
+
+  if (isNumericType) {
+    // Validate numeric value
+    const num = Number(entry.value);
+    if (Number.isNaN(num)) {
+      return {
+        valid: false,
+        message: `"${entry.key}" must be a number to apply range check, got "${entry.value}"`,
+        severity: 'error',
+      };
+    }
+
+    if (schema.min !== undefined && num < schema.min) {
+      return {
+        valid: false,
+        message: `"${entry.key}" value ${num} is below minimum ${schema.min}`,
+        severity: 'error',
+        suggestion: `Set "${entry.key}" to at least ${schema.min}`,
+      };
+    }
+
+    if (schema.max !== undefined && num > schema.max) {
+      return {
+        valid: false,
+        message: `"${entry.key}" value ${num} exceeds maximum ${schema.max}`,
+        severity: 'error',
+        suggestion: `Set "${entry.key}" to at most ${schema.max}`,
+      };
+    }
+
     return {
-      valid: false,
-      message: `"${entry.key}" must be a number to apply range check, got "${entry.value}"`,
-      severity: 'error',
+      valid: true,
+      message: `"${entry.key}" is within range [${schema.min ?? '−∞'}, ${schema.max ?? '∞'}]`,
+      severity: 'info',
+    };
+  } else {
+    // Validate string length
+    const len = entry.value.length;
+
+    if (schema.min !== undefined && len < schema.min) {
+      return {
+        valid: false,
+        message: `"${entry.key}" length is ${len}, expected at least ${schema.min} characters`,
+        severity: 'error',
+        suggestion: `Set "${entry.key}" to a value with at least ${schema.min} characters`,
+      };
+    }
+
+    if (schema.max !== undefined && len > schema.max) {
+      return {
+        valid: false,
+        message: `"${entry.key}" length is ${len}, expected at most ${schema.max} characters`,
+        severity: 'error',
+        suggestion: `Set "${entry.key}" to a value with at most ${schema.max} characters`,
+      };
+    }
+
+    return {
+      valid: true,
+      message: `"${entry.key}" length (${len}) is within range [${schema.min ?? '0'}, ${schema.max ?? '∞'}]`,
+      severity: 'info',
     };
   }
-
-  if (schema.min !== undefined && num < schema.min) {
-    return {
-      valid: false,
-      message: `"${entry.key}" value ${num} is below minimum ${schema.min}`,
-      severity: 'error',
-      suggestion: `Set "${entry.key}" to at least ${schema.min}`,
-    };
-  }
-
-  if (schema.max !== undefined && num > schema.max) {
-    return {
-      valid: false,
-      message: `"${entry.key}" value ${num} exceeds maximum ${schema.max}`,
-      severity: 'error',
-      suggestion: `Set "${entry.key}" to at most ${schema.max}`,
-    };
-  }
-
-  return {
-    valid: true,
-    message: `"${entry.key}" is within range [${schema.min ?? '−∞'}, ${schema.max ?? '∞'}]`,
-    severity: 'info',
-  };
 }
 
 /**

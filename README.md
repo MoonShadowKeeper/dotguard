@@ -6,7 +6,7 @@
     <img alt="npm version" src="https://img.shields.io/npm/v/dotguard?color=blue&style=flat-square" />
     <img alt="license" src="https://img.shields.io/npm/l/dotguard?style=flat-square" />
     <img alt="node" src="https://img.shields.io/node/v/dotguard?style=flat-square" />
-    <img alt="CI" src="https://img.shields.io/github/actions/workflow/status/dotguard/dotguard/ci.yml?style=flat-square&label=CI" />
+    <img alt="CI" src="https://img.shields.io/github/actions/workflow/status/MoonShadowKeeper/dotguard/validate-env.yml?style=flat-square&label=CI" />
   </p>
 
   <p>
@@ -639,10 +639,10 @@ Contributions are welcome! Here's how to get started:
 node test/run.js
 
 # Validate the project's own .env
-node src/cli.js validate
+node bin/dotguard.js validate
 
 # Run with debug output
-DEBUG=true node src/cli.js validate
+DEBUG=true node bin/dotguard.js validate
 ```
 
 ### Guidelines

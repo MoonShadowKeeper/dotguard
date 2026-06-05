@@ -169,7 +169,7 @@ function reportResults(results, opts = {}) {
  *
  * ```
  * ┌──────────────────────────────────────┐
- * │  EnvGuard Validation Summary         │
+ * │  DotGuard Validation Summary         │
  * ├──────────────────────────────────────┤
  * │  ✓  12 passed                        │
  * │  ✗   3 failed                        │
@@ -201,7 +201,7 @@ function reportSummary(summary) {
   console.log(`  ${style(color.dim, `${symbols.tl}${hLine}${symbols.tr}`)}`);
 
   // Title
-  const title = `  ${style(color.bold, 'EnvGuard Validation Summary')}`;
+  const title = `  ${style(color.bold, 'DotGuard Validation Summary')}`;
   console.log(`  ${style(color.dim, symbols.vLine)}${title}${' '.repeat(Math.max(0, innerWidth - stripAnsi(title).length))}${style(color.dim, symbols.vLine)}`);
 
   console.log(`  ${style(color.dim, `${symbols.tee}${hLine}${symbols.br.replace(symbols.br, '┤')}`)}`);
